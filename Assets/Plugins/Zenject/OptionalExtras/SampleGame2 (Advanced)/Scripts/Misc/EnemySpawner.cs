@@ -65,7 +65,7 @@ namespace Zenject.SpaceFighter
 
         Vector3 ChooseRandomStartPosition()
         {
-            var side = Random.Range(0, 3);
+            var side = Random.Range(0, 4);
             var posOnSide = Random.Range(0, 1.0f);
 
             float buffer = 2.0f;

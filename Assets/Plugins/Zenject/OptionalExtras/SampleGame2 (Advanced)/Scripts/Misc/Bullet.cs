@@ -38,22 +38,15 @@ namespace Zenject.SpaceFighter
 
         public void OnTriggerEnter(Collider other)
         {
-            var enemyView = other.GetComponent<EnemyView>();
-
-            if (enemyView != null && _type == BulletTypes.FromPlayer)
+            if (other.TryGetComponent(out EnemyView enemyView) && _type == BulletTypes.FromPlayer)
             {
                 enemyView.Facade.Die();
                 _pool.Despawn(this);
             }
-            else
+            else if (other.TryGetComponent(out PlayerFacade player) && _type == BulletTypes.FromEnemy)
             {
-                var player = other.GetComponent<PlayerFacade>();
-
-                if (player != null && _type == BulletTypes.FromEnemy)
-                {
-                    player.TakeDamage(MoveDirection);
-                    _pool.Despawn(this);
-                }
+                player.TakeDamage(MoveDirection);
+                _pool.Despawn(this);
             }
         }
 

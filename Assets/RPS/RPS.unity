@@ -270,6 +270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 350970854}
   - component: {fileID: 350970853}
+  - component: {fileID: 350970855}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -290,7 +291,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
-  _monoInstallers: []
+  _monoInstallers:
+  - {fileID: 350970855}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -322,6 +324,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &350970855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350970852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98710e966a35d4647a5b3d619a72ec31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &429638513
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,6 +347,7 @@ GameObject:
   - component: {fileID: 429638514}
   - component: {fileID: 429638516}
   - component: {fileID: 429638515}
+  - component: {fileID: 429638517}
   m_Layer: 5
   m_Name: Scissors
   m_TagString: Untagged
@@ -480,6 +495,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 429638513}
   m_CullTransparentMesh: 0
+--- !u!114 &429638517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429638513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c0be29f01a7c4947a9df7ae7132be3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &481333371
 GameObject:
   m_ObjectHideFlags: 0
@@ -1001,6 +1028,7 @@ GameObject:
   - component: {fileID: 1816545601}
   - component: {fileID: 1816545603}
   - component: {fileID: 1816545602}
+  - component: {fileID: 1816545604}
   m_Layer: 5
   m_Name: Paper
   m_TagString: Untagged
@@ -1148,6 +1176,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1816545600}
   m_CullTransparentMesh: 0
+--- !u!114 &1816545604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816545600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c0be29f01a7c4947a9df7ae7132be3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1905407390
 GameObject:
   m_ObjectHideFlags: 0

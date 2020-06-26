@@ -1,20 +1,23 @@
-﻿using ngettext_unity;
-using TMPro;
+﻿using TMPro;
+using UGettext;
 using UnityEngine;
-using UnityEngine.UI;
+using Zenject;
 
 [RequireComponent(typeof(TextMeshProUGUI))]
 public sealed class TextTranslator : MonoBehaviour
 {
+    private Translation l18n;
     private TextMeshProUGUI text;
+
+    [Inject]
+    private void Construct(Translation l18n)
+    {
+        this.l18n = l18n;
+    }
 
     private void Start()
     {
         text = GetComponent<TextMeshProUGUI>();
-
-        NGettextUnity.Instance.LoadLocale("zh-TW");
-        Debug.Log(text.text);
-        text.text = NGettextUnity.Catalog.GetString(text.text);
-        Debug.Log(text.text);
+        text.text = l18n.Catalog.GetString(text.text);
     }
 }

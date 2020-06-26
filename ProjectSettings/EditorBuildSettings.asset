@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/RPS/RPS.unity
+    guid: a08bd2887fd9583448d34e0bfa1eb938
   m_configObjects: {}

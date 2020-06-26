@@ -53,9 +53,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: NotoSansTC-Regular SDF
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: -2102473692
   material: {fileID: 5902656854771351183}
-  materialHashCode: 0
+  materialHashCode: 1586572335
   m_Version: 1.1.0
   m_SourceFontFileGUID: e4c6ce283bbda44459a16ab9322acc2e
   m_SourceFontFile_EditorRef: {fileID: 0}
@@ -397,16 +397,16 @@ MonoBehaviour:
     m_Height: 130
   - m_X: 392
     m_Y: 0
-    m_Width: 113
-    m_Height: 119
+    m_Width: 112
+    m_Height: 118
   - m_X: 392
-    m_Y: 119
-    m_Width: 33
-    m_Height: 108
+    m_Y: 118
+    m_Width: 27
+    m_Height: 109
   - m_X: 260
     m_Y: 129
     m_Width: 128
-    m_Height: 129
+    m_Height: 130
   - m_X: 388
     m_Y: 227
     m_Width: 122
@@ -418,44 +418,44 @@ MonoBehaviour:
   - m_X: 0
     m_Y: 259
     m_Width: 128
-    m_Height: 126
+    m_Height: 124
   - m_X: 128
     m_Y: 380
-    m_Width: 125
+    m_Width: 126
     m_Height: 130
   - m_X: 0
-    m_Y: 385
+    m_Y: 383
     m_Width: 128
-    m_Height: 119
-  - m_X: 253
+    m_Height: 118
+  - m_X: 254
     m_Y: 380
-    m_Width: 125
-    m_Height: 130
+    m_Width: 126
+    m_Height: 129
   - m_X: 256
-    m_Y: 258
+    m_Y: 259
     m_Width: 122
-    m_Height: 116
-  - m_X: 378
+    m_Height: 114
+  - m_X: 380
     m_Y: 350
-    m_Width: 127
+    m_Width: 124
     m_Height: 129
   m_FreeGlyphRects:
   - m_X: 260
     m_Y: 122
     m_Width: 2
     m_Height: 7
-  - m_X: 505
+  - m_X: 504
     m_Y: 0
-    m_Width: 6
+    m_Width: 7
     m_Height: 227
   - m_X: 510
     m_Y: 0
     m_Width: 1
     m_Height: 511
-  - m_X: 425
-    m_Y: 119
-    m_Width: 86
-    m_Height: 108
+  - m_X: 419
+    m_Y: 118
+    m_Width: 92
+    m_Height: 109
   - m_X: 388
     m_Y: 129
     m_Width: 4
@@ -469,29 +469,37 @@ MonoBehaviour:
     m_Width: 511
     m_Height: 1
   - m_X: 0
-    m_Y: 504
+    m_Y: 501
     m_Width: 128
-    m_Height: 7
+    m_Height: 10
+  - m_X: 254
+    m_Y: 509
+    m_Width: 257
+    m_Height: 2
   - m_X: 256
     m_Y: 251
     m_Width: 4
+    m_Height: 8
+  - m_X: 380
+    m_Y: 479
+    m_Width: 131
+    m_Height: 32
+  - m_X: 504
+    m_Y: 350
+    m_Width: 7
+    m_Height: 161
+  - m_X: 256
+    m_Y: 373
+    m_Width: 124
     m_Height: 7
   - m_X: 378
-    m_Y: 479
-    m_Width: 133
-    m_Height: 32
-  - m_X: 505
-    m_Y: 350
-    m_Width: 6
-    m_Height: 161
-  - m_X: 378
-    m_Y: 258
+    m_Y: 259
     m_Width: 10
-    m_Height: 92
-  - m_X: 256
-    m_Y: 374
-    m_Width: 122
-    m_Height: 6
+    m_Height: 91
+  - m_X: 378
+    m_Y: 259
+    m_Width: 2
+    m_Height: 121
   m_fontInfo:
     Name: 
     PointSize: 0
@@ -638,9 +646,9 @@ Material:
     - _OutlineWidth: 0
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
-    - _ScaleRatioA: 1
-    - _ScaleRatioB: 1
-    - _ScaleRatioC: 1
+    - _ScaleRatioA: 0.8333333
+    - _ScaleRatioB: 0.6770833
+    - _ScaleRatioC: 0.6770833
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0

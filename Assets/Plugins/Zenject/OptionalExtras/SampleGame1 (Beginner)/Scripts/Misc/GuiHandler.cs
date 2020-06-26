@@ -151,6 +151,13 @@ namespace Zenject.Asteroids
                     GUILayout.FlexibleSpace();
                 }
                 GUILayout.EndHorizontal();
+                GUILayout.BeginHorizontal();
+                {
+                    GUILayout.Space(30);
+                    GUILayout.Label("Best Time: " + _gameController.BestTime.ToString("0.##"), _timeStyle);
+                    GUILayout.FlexibleSpace();
+                }
+                GUILayout.EndHorizontal();
             }
             GUILayout.EndVertical();
         }

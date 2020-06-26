@@ -13,12 +13,15 @@ namespace Zenject.Asteroids
 
     public class GameController : IInitializable, ITickable, IDisposable
     {
+        private const string BestTimeKey = "BestTime";
+
         readonly SignalBus _signalBus;
         readonly Ship _ship;
         readonly AsteroidManager _asteroidSpawner;
 
         GameStates _state = GameStates.WaitingToStart;
         float _elapsedTime;
+        float _bestTime;
 
         public GameController(
             Ship ship, AsteroidManager asteroidSpawner,
@@ -34,6 +37,17 @@ namespace Zenject.Asteroids
             get { return _elapsedTime; }
         }
 
+        public float BestTime
+        {
+            get { return _bestTime; }
+        }
+
+        private float SavedBestTime
+        {
+            get { return PlayerPrefs.GetFloat(BestTimeKey, 0f); }
+            set { PlayerPrefs.SetFloat(BestTimeKey, value); }
+        }
+
         public GameStates State
         {
             get { return _state; }
@@ -44,6 +58,8 @@ namespace Zenject.Asteroids
             Physics.gravity = Vector3.zero;
 
             Cursor.visible = false;
+
+            _bestTime = SavedBestTime;
 
             _signalBus.Subscribe<ShipCrashedSignal>(OnShipCrashed);
         }
@@ -95,12 +111,16 @@ namespace Zenject.Asteroids
             Assert.That(_state == GameStates.Playing);
             _state = GameStates.GameOver;
             _asteroidSpawner.Stop();
+            if (_elapsedTime > _bestTime)
+                SavedBestTime = _elapsedTime;
         }
 
         void UpdatePlaying()
         {
             Assert.That(_state == GameStates.Playing);
             _elapsedTime += Time.deltaTime;
+            if (_elapsedTime > _bestTime)
+                _bestTime = _elapsedTime;
         }
 
         void UpdateStarting()

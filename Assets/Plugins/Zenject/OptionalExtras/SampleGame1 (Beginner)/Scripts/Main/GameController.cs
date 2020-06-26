@@ -111,7 +111,7 @@ namespace Zenject.Asteroids
             Assert.That(_state == GameStates.Playing);
             _state = GameStates.GameOver;
             _asteroidSpawner.Stop();
-            if (_elapsedTime > _bestTime)
+            if (_elapsedTime > SavedBestTime)
                 SavedBestTime = _elapsedTime;
         }
 

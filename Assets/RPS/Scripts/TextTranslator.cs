@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using NGettext;
+using TMPro;
 using UGettext;
 using UnityEngine;
 using Zenject;
@@ -6,18 +7,36 @@ using Zenject;
 [RequireComponent(typeof(TextMeshProUGUI))]
 public sealed class TextTranslator : MonoBehaviour
 {
-    private Translation l18n;
+    private I18n l18n;
     private TextMeshProUGUI text;
+    private string originalText;
 
     [Inject]
-    private void Construct(Translation l18n)
+    private void Construct(I18n l18n)
     {
         this.l18n = l18n;
+        l18n.LanguageChanged += OnLanguageChanged;
+    }
+
+    private void OnDestroy()
+    {
+        l18n.LanguageChanged -= OnLanguageChanged;
+    }
+
+    private void OnLanguageChanged(Catalog catalog)
+    {
+        UpdateText();
     }
 
     private void Start()
     {
         text = GetComponent<TextMeshProUGUI>();
-        text.text = l18n.Catalog.GetString(text.text);
+        originalText = text.text;
+        UpdateText();
+    }
+
+    private void UpdateText()
+    {
+        text.text = l18n.Catalog.GetString(originalText);
     }
 }

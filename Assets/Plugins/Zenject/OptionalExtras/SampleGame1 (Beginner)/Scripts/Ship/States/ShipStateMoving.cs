@@ -9,17 +9,19 @@ namespace Zenject.Asteroids
         readonly Settings _settings;
         readonly Camera _mainCamera;
         readonly Ship _ship;
+        readonly LevelHelper _level;
 
         Vector3 _lastPosition;
         float _oscillationTheta;
 
         public ShipStateMoving(
-            Settings settings, Ship ship,
+            Settings settings, Ship ship, LevelHelper level,
             [Inject(Id = "Main")]
             Camera mainCamera)
         {
             _ship = ship;
             _settings = settings;
+            _level = level;
             _mainCamera = mainCamera;
         }
 
@@ -27,7 +29,16 @@ namespace Zenject.Asteroids
         {
             UpdateThruster();
             Move();
+            ApplyLevelConstraints();
             ApplyOscillation();
+        }
+
+        void ApplyLevelConstraints()
+        {
+            _ship.Position = new Vector3(
+                Mathf.Clamp(_ship.Position.x, _level.Left, _level.Right),
+                Mathf.Clamp(_ship.Position.y, _level.Bottom, _level.Top),
+                _ship.Position.z);
         }
 
         void ApplyOscillation()

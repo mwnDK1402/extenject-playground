@@ -8,14 +8,13 @@ using Zenject;
 public sealed class TextTranslator : MonoBehaviour
 {
     private I18n l18n;
-    private TextMeshProUGUI text;
     private string originalText;
+    private TextMeshProUGUI text;
 
     [Inject]
     private void Construct(I18n l18n)
     {
         this.l18n = l18n;
-        l18n.LanguageChanged += OnLanguageChanged;
     }
 
     private void OnDestroy()
@@ -33,6 +32,7 @@ public sealed class TextTranslator : MonoBehaviour
         text = GetComponent<TextMeshProUGUI>();
         originalText = text.text;
         UpdateText();
+        l18n.LanguageChanged += OnLanguageChanged;
     }
 
     private void UpdateText()

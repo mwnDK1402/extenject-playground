@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using ModestTree;
+using System.Collections.Generic;
 using System.Globalization;
 using TMPro;
 using UGettext;
@@ -8,13 +9,13 @@ using Zenject;
 [RequireComponent(typeof(TMP_Dropdown))]
 public sealed class LanguageSelector : MonoBehaviour
 {
-    [SerializeField]
-    private SupportedLanguages supported;
-
     [HideInInspector, SerializeField]
     private TMP_Dropdown dropdown;
 
     private I18n i18n;
+
+    [SerializeField]
+    private SupportedLanguages supported;
 
     [Inject]
     public void Construct(I18n i18n)
@@ -53,4 +54,10 @@ public sealed class LanguageSelector : MonoBehaviour
     }
 
 #endif
+
+    private void Start()
+    {
+        var index = supported.IDs.IndexOf(i18n.Catalog.CultureInfo.LCID);
+        dropdown.value = index;
+    }
 }

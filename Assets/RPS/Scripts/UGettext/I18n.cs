@@ -1,19 +1,21 @@
 using NGettext;
 using System;
 using System.Globalization;
+using UnityEngine;
 
 namespace UGettext
 {
     public class I18n
     {
         public const string LocalePath = "Locale";
-
+        private const string DefaultLanguage = "en-US";
+        private const string LanguageKey = "Language";
         private Catalog catalog;
-
         private string localeDomain = "messages_mo";
 
         public I18n()
         {
+            LoadLocale(SavedLocaleName);
         }
 
         public event Action<Catalog> LanguageChanged;
@@ -26,7 +28,14 @@ namespace UGettext
             {
                 catalog = value;
                 LanguageChanged?.Invoke(value);
+                SavedLocaleName = value.CultureInfo.Name;
             }
+        }
+
+        private string SavedLocaleName
+        {
+            get => PlayerPrefs.GetString(LanguageKey, DefaultLanguage);
+            set => PlayerPrefs.SetString(LanguageKey, value);
         }
 
         public void LoadLocale(string localeName) =>
@@ -42,6 +51,6 @@ namespace UGettext
                 cultureInfo);
 
         public void SetLocaleDomain(string localeDomain) =>
-                    this.localeDomain = localeDomain;
+            this.localeDomain = localeDomain;
     }
 }

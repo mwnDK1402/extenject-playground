@@ -4,39 +4,42 @@ using UGettext;
 using UnityEngine;
 using Zenject;
 
-[RequireComponent(typeof(TextMeshProUGUI))]
-public sealed class TextTranslator : MonoBehaviour
+namespace RPS
 {
-    private I18n l18n;
-    private string originalText;
-    private TextMeshProUGUI text;
-
-    [Inject]
-    private void Construct(I18n l18n)
+    [RequireComponent(typeof(TextMeshProUGUI))]
+    public sealed class TextTranslator : MonoBehaviour
     {
-        this.l18n = l18n;
-    }
+        private I18n l18n;
+        private string originalText;
+        private TextMeshProUGUI text;
 
-    private void OnDestroy()
-    {
-        l18n.LanguageChanged -= OnLanguageChanged;
-    }
+        [Inject]
+        private void Construct(I18n l18n)
+        {
+            this.l18n = l18n;
+        }
 
-    private void OnLanguageChanged(Catalog catalog)
-    {
-        UpdateText();
-    }
+        private void OnDestroy()
+        {
+            l18n.LanguageChanged -= OnLanguageChanged;
+        }
 
-    private void Start()
-    {
-        text = GetComponent<TextMeshProUGUI>();
-        originalText = text.text;
-        UpdateText();
-        l18n.LanguageChanged += OnLanguageChanged;
-    }
+        private void OnLanguageChanged(Catalog catalog)
+        {
+            UpdateText();
+        }
 
-    private void UpdateText()
-    {
-        text.text = l18n.Catalog.GetString(originalText);
+        private void Start()
+        {
+            text = GetComponent<TextMeshProUGUI>();
+            originalText = text.text;
+            UpdateText();
+            l18n.LanguageChanged += OnLanguageChanged;
+        }
+
+        private void UpdateText()
+        {
+            text.text = l18n.Catalog.GetString(originalText);
+        }
     }
 }

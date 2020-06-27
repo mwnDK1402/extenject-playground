@@ -1,24 +1,28 @@
-﻿using UnityEditor;
+﻿using RPS;
+using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(SupportedLanguages))]
-public sealed class SupportedLanguagesEditor : Editor
+namespace RPSEditor
 {
-    private readonly GUIContent buttonContent =
-        new GUIContent("Update Languages");
-
-    private new SupportedLanguages target;
-
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(SupportedLanguages))]
+    public sealed class SupportedLanguagesEditor : Editor
     {
-        DrawDefaultInspector();
+        private readonly GUIContent buttonContent =
+            new GUIContent("Update Languages");
 
-        if (GUILayout.Button(buttonContent))
-            target.UpdateLanguages();
-    }
+        private new SupportedLanguages target;
 
-    private void OnEnable()
-    {
-        target = (SupportedLanguages)base.target;
+        public override void OnInspectorGUI()
+        {
+            DrawDefaultInspector();
+
+            if (GUILayout.Button(buttonContent))
+                target.UpdateLanguages();
+        }
+
+        private void OnEnable()
+        {
+            target = (SupportedLanguages)base.target;
+        }
     }
 }

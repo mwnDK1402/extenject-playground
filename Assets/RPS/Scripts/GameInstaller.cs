@@ -1,10 +1,13 @@
 using UGettext;
 using Zenject;
 
-public class GameInstaller : MonoInstaller
+namespace RPS
 {
-    public override void InstallBindings()
+    public class GameInstaller : MonoInstaller
     {
-        Container.Bind<I18n>().AsSingle();
+        public override void InstallBindings()
+        {
+            Container.Bind<I18n>().AsSingle();
+        }
     }
 }

@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace UGettext
 {
-    internal class UnityCatalog : Catalog
+    internal sealed class UnityCatalog : Catalog
     {
         /// <inheritdoc />
         public UnityCatalog(string domain, string localeDir)

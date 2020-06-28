@@ -15,7 +15,8 @@ namespace UGettext
         private static ResourcesLoader _loader = Resources.Load;
         private TextAsset foundAndLoadedAsset;
 
-        public UnityMoLoader(string domain, string localeDir) : base(domain, localeDir)
+        public UnityMoLoader(string domain, string localeDir)
+            : base(domain, localeDir)
         {
         }
 
@@ -54,8 +55,6 @@ namespace UGettext
         /// <inheritdoc />
         protected override void Load(string filePath, Catalog catalog)
         {
-            Debug.Log(string.Format(
-                "Getting translations from asset \"{0}\"...", filePath));
             using (var stream = new MemoryStream(foundAndLoadedAsset.bytes))
                 Load(stream, catalog);
         }

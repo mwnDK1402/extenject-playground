@@ -5,16 +5,16 @@ using UnityEngine;
 
 namespace UGettext
 {
-    public class I18n
+    public sealed class I18n
     {
         public const string LocalePath = "Locale";
         private const string DefaultLanguage = "en-US";
         private const string LanguageKey = "Language";
         private Catalog catalog;
-        private string localeDomain = "messages_mo";
 
-        public I18n()
+        public I18n(string localeDomain = "messages_mo")
         {
+            this.LocaleDomain = localeDomain;
             LoadLocale(SavedLocaleName);
         }
 
@@ -24,13 +24,15 @@ namespace UGettext
         {
             get => catalog;
 
-            set
+            private set
             {
                 catalog = value;
                 LanguageChanged?.Invoke(value);
                 SavedLocaleName = value.CultureInfo.Name;
             }
         }
+
+        public string LocaleDomain { get; set; }
 
         private string SavedLocaleName
         {
@@ -39,18 +41,12 @@ namespace UGettext
         }
 
         public void LoadLocale(string localeName) =>
-            Catalog = new UnityCatalog(
-                localeDomain,
-                LocalePath,
-                new CultureInfo(localeName));
+            LoadLocale(new CultureInfo(localeName));
 
         public void LoadLocale(CultureInfo cultureInfo) =>
             Catalog = new UnityCatalog(
-                localeDomain,
+                LocaleDomain,
                 LocalePath,
                 cultureInfo);
-
-        public void SetLocaleDomain(string localeDomain) =>
-            this.localeDomain = localeDomain;
     }
 }

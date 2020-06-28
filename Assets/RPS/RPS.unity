@@ -499,6 +499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98710e966a35d4647a5b3d619a72ec31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deletePlayerPrefs: 0
 --- !u!1 &429638513
 GameObject:
   m_ObjectHideFlags: 0
@@ -1461,8 +1462,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de99789e29bc1b84eab7bcd9736cc4f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  supported: {fileID: 11400000, guid: d58abcdad73af044c8ed656109573838, type: 2}
   dropdown: {fileID: 824637379}
+  supported: {fileID: 11400000, guid: d58abcdad73af044c8ed656109573838, type: 2}
 --- !u!1 &980639517
 GameObject:
   m_ObjectHideFlags: 0

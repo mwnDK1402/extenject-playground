@@ -9,14 +9,14 @@ using Zenject;
 namespace RPS
 {
     [RequireComponent(typeof(TMP_Dropdown))]
-    public sealed class LanguageSelector : MonoBehaviour
+    internal sealed class LanguageSelector : MonoBehaviour
     {
-        [HideInInspector, SerializeField]
+        [SerializeField, HideInInspector]
         private TMP_Dropdown dropdown;
 
         private I18n i18n;
 
-        [SerializeField]
+        [SerializeField, HideInInspector]
         private SupportedLanguages supported;
 
         [Inject]
@@ -32,18 +32,8 @@ namespace RPS
 
 #if UNITY_EDITOR
 
-        private void Reset()
+        private List<TMP_Dropdown.OptionData> GetOptions()
         {
-            dropdown = GetComponent<TMP_Dropdown>();
-            UnityEditor.Events.UnityEventTools.RemovePersistentListener<int>(
-                dropdown.onValueChanged,
-                OnLanguageSelected);
-            UnityEditor.Events.UnityEventTools.AddPersistentListener(
-                dropdown.onValueChanged,
-                OnLanguageSelected);
-
-            dropdown.ClearOptions();
-
             var options = new List<TMP_Dropdown.OptionData>();
             foreach (var id in supported.IDs)
             {
@@ -52,7 +42,25 @@ namespace RPS
                 options.Add(option);
             }
 
-            dropdown.AddOptions(options);
+            return options;
+        }
+
+        private void Reset()
+        {
+            dropdown = GetComponent<TMP_Dropdown>();
+            ResetListener();
+            dropdown.ClearOptions();
+            dropdown.AddOptions(GetOptions());
+        }
+
+        private void ResetListener()
+        {
+            UnityEditor.Events.UnityEventTools.RemovePersistentListener<int>(
+                dropdown.onValueChanged,
+                OnLanguageSelected);
+            UnityEditor.Events.UnityEventTools.AddPersistentListener(
+                dropdown.onValueChanged,
+                OnLanguageSelected);
         }
 
 #endif

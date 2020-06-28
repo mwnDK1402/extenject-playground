@@ -7,21 +7,21 @@ using Zenject;
 namespace RPS
 {
     [RequireComponent(typeof(TextMeshProUGUI))]
-    public sealed class TextTranslator : MonoBehaviour
+    internal sealed class TextTranslator : MonoBehaviour
     {
-        private I18n l18n;
+        private I18n i18n;
         private string originalText;
         private TextMeshProUGUI text;
 
         [Inject]
-        private void Construct(I18n l18n)
+        private void Construct(I18n i18n)
         {
-            this.l18n = l18n;
+            this.i18n = i18n;
         }
 
         private void OnDestroy()
         {
-            l18n.LanguageChanged -= OnLanguageChanged;
+            i18n.LanguageChanged -= OnLanguageChanged;
         }
 
         private void OnLanguageChanged(Catalog catalog)
@@ -34,12 +34,12 @@ namespace RPS
             text = GetComponent<TextMeshProUGUI>();
             originalText = text.text;
             UpdateText();
-            l18n.LanguageChanged += OnLanguageChanged;
+            i18n.LanguageChanged += OnLanguageChanged;
         }
 
         private void UpdateText()
         {
-            text.text = l18n.Catalog.GetString(originalText);
+            text.text = i18n.Catalog.GetString(originalText);
         }
     }
 }

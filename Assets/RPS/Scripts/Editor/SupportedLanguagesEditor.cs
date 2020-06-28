@@ -5,7 +5,7 @@ using UnityEngine;
 namespace RPSEditor
 {
     [CustomEditor(typeof(SupportedLanguages))]
-    public sealed class SupportedLanguagesEditor : Editor
+    internal sealed class SupportedLanguagesEditor : Editor
     {
         private readonly GUIContent buttonContent =
             new GUIContent("Update Languages");

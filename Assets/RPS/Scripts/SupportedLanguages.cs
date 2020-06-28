@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -19,9 +20,8 @@ namespace RPS
 
         public void UpdateLanguages()
         {
-            var assetsPath = Application.dataPath;
             var matchingDirs = Directory.GetDirectories(
-                assetsPath,
+                Application.dataPath,
                 "*",
                 SearchOption.AllDirectories)
                 .Where(dir => ValidateRegex.IsMatch(dir.Replace("\\", "/")));
@@ -33,29 +33,34 @@ namespace RPS
                     break;
 
                 case 1:
-                    var localeDirs = Directory.GetDirectories(matchingDirs.Single());
-                    var cultureIDs = new List<int>();
-                    foreach (var localeDir in localeDirs)
-                    {
-                        var localeName = new DirectoryInfo(localeDir).Name;
-                        try
-                        {
-                            var culture = new CultureInfo(localeName);
-                            cultureIDs.Add(culture.LCID);
-                        }
-                        catch (CultureNotFoundException e)
-                        {
-                            Debug.LogWarning($"{localeDir} is not a valid locale directory.");
-                        }
-                    }
-
-                    IDs = cultureIDs.ToArray();
+                    IDs = GetCultureGUIDs(matchingDirs).ToArray();
                     break;
 
                 default:
                     Debug.LogError("Too many matching directories.");
                     break;
             }
+        }
+
+        private static List<int> GetCultureGUIDs(IEnumerable<string> matchingDirs)
+        {
+            var localeDirs = Directory.GetDirectories(matchingDirs.Single());
+            var cultureIDs = new List<int>();
+            foreach (var localeDir in localeDirs)
+            {
+                var localeName = new DirectoryInfo(localeDir).Name;
+                try
+                {
+                    var culture = new CultureInfo(localeName);
+                    cultureIDs.Add(culture.LCID);
+                }
+                catch (CultureNotFoundException)
+                {
+                    Debug.LogWarning($"{localeDir} is not a valid locale directory.");
+                }
+            }
+
+            return cultureIDs;
         }
 
         private void OnValidate()

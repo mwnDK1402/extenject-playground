@@ -9,10 +9,16 @@ namespace RPS
     [RequireComponent(typeof(TextMeshProUGUI))]
     internal sealed class TextTranslator : MonoBehaviour
     {
-        private I18n i18n;
-        private string originalText;
-        private TextMeshProUGUI text;
         private object[] arguments;
+
+        private I18n i18n;
+
+        private string originalText;
+
+        private TextMeshProUGUI text;
+
+        [SerializeField]
+        private bool updateTextOnEnable = true;
 
         public string GetOriginalText() => originalText;
 
@@ -44,7 +50,8 @@ namespace RPS
 
         private void Start()
         {
-            UpdateText();
+            if (updateTextOnEnable)
+                UpdateText();
             i18n.LanguageChanged += OnLanguageChanged;
         }
 

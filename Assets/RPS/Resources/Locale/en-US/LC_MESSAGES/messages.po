@@ -24,14 +24,14 @@ msgstr "Scissors"
 msgid "READY?"
 msgstr "READY?"
 
-msgid "3"
-msgstr "3"
+msgid "countdown3"
+msgstr "Rock!"
 
-msgid "2"
-msgstr "2"
+msgid "countdown2"
+msgstr "Paper!"
 
-msgid "1"
-msgstr "1"
+msgid "countdown1"
+msgstr "Scissors!"
 
 msgid "GO!"
 msgstr "GO!"

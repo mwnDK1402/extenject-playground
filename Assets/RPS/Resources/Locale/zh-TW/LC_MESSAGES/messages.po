@@ -24,14 +24,14 @@ msgstr "剪刀"
 msgid "READY?"
 msgstr "準備好了嗎？"
 
-msgid "3"
-msgstr "3"
+msgid "countdown3"
+msgstr "布"
 
-msgid "2"
-msgstr "2"
+msgid "countdown2"
+msgstr "剪刀"
 
-msgid "1"
-msgstr "1"
+msgid "countdown1"
+msgstr "石頭"
 
 msgid "GO!"
 msgstr "GO!"

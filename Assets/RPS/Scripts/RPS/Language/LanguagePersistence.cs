@@ -16,6 +16,7 @@ namespace RPS
         public LanguagePersistence(I18n i18n)
         {
             this.i18n = i18n;
+            i18n.LoadLocale(SavedLanguage);
         }
 
         public string SavedLanguage
@@ -31,7 +32,6 @@ namespace RPS
 
         public void Initialize()
         {
-            i18n.LoadLocale(SavedLanguage);
             i18n.LanguageChanged += OnLanguageChanged;
         }
 

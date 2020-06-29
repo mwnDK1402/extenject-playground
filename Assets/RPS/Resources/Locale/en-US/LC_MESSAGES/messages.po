@@ -41,3 +41,9 @@ msgstr "LEFT WINS!"
 
 msgid "RIGHT WINS!"
 msgstr "RIGHT WINS!"
+
+msgid "Countdown Time: {0}s"
+msgstr "Countdown Time: {0}s"
+
+msgid "Start!"
+msgstr "Start!"

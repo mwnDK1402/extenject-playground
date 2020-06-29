@@ -41,3 +41,9 @@ msgstr "左方獲勝！"
 
 msgid "RIGHT WINS!"
 msgstr "右方獲勝！"
+
+msgid "Countdown Time: {0}s"
+msgstr "倒數時間時長: {0}秒"
+
+msgid "Start!"
+msgstr "開始！"

@@ -7,6 +7,8 @@ namespace RPS
 {
     internal sealed class CountdownSlider : MonoBehaviour
     {
+        private const string CountdownTimeKey = "CountdownTime";
+
         private ChoiceState choiceSettings;
         private I18n i18n;
         private string originalText;
@@ -32,6 +34,10 @@ namespace RPS
         private void OnDestroy()
         {
             slider.onValueChanged.RemoveListener(OnValueChanged);
+
+            PlayerPrefs.SetFloat(
+                CountdownTimeKey,
+                slider.value);
         }
 
         private void OnValueChanged(float value)
@@ -42,13 +48,18 @@ namespace RPS
 
         private void Reset()
         {
-            slider.minValue = 3;
+            slider.minValue = 1;
             slider.maxValue = 20;
+            slider.value = 3;
             slider.wholeNumbers = true;
         }
 
         private void Start()
         {
+            slider.value = PlayerPrefs.GetFloat(
+                CountdownTimeKey,
+                slider.value);
+
             UpdateText();
             choiceSettings.CountdownTime = slider.value;
             slider.onValueChanged.AddListener(OnValueChanged);

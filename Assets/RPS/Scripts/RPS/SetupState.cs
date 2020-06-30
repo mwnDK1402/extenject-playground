@@ -3,38 +3,41 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-internal sealed class SetupState : MonoBehaviour
+namespace RPS
 {
-    [SerializeField]
-    private Button startButton;
-
-    private StateManager stateManager;
-
-    public event Action StartClicked;
-
-    [Inject]
-    private void Construct(StateManager stateManager)
+    internal sealed class SetupState : MonoBehaviour
     {
-        this.stateManager = stateManager;
-    }
+        [SerializeField]
+        private Button startButton;
 
-    private void OnDestroy()
-    {
-        startButton.onClick.RemoveListener(OnStartClicked);
-    }
+        private StateManager stateManager;
 
-    private void OnStartClicked()
-    {
-        StartClicked?.Invoke();
-    }
+        public event Action StartClicked;
 
-    private void Reset()
-    {
-        startButton = GetComponentInChildren<Button>();
-    }
+        [Inject]
+        private void Construct(StateManager stateManager)
+        {
+            this.stateManager = stateManager;
+        }
 
-    private void Start()
-    {
-        startButton.onClick.AddListener(OnStartClicked);
+        private void OnDestroy()
+        {
+            startButton.onClick.RemoveListener(OnStartClicked);
+        }
+
+        private void OnStartClicked()
+        {
+            StartClicked?.Invoke();
+        }
+
+        private void Reset()
+        {
+            startButton = GetComponentInChildren<Button>();
+        }
+
+        private void Start()
+        {
+            startButton.onClick.AddListener(OnStartClicked);
+        }
     }
 }

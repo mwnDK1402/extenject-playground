@@ -2,85 +2,88 @@
 using UnityEngine;
 using Zenject;
 
-internal sealed class StateManager : MonoBehaviour
+namespace RPS
 {
-    private ChoiceState choice;
-    private ResultState result;
-    private SetupState setup;
-
-    [Inject]
-    private void Construct(
-        SetupState setup,
-        ChoiceState choice,
-        ResultState result)
+    internal sealed class StateManager : MonoBehaviour
     {
-        this.setup = setup;
-        this.choice = choice;
-        this.result = result;
-    }
+        private ChoiceState choice;
+        private ResultState result;
+        private SetupState setup;
 
-    private void OnChoiceTaken(ResultState.ResultChoice resultChoice)
-    {
-        switch (resultChoice)
+        [Inject]
+        private void Construct(
+            SetupState setup,
+            ChoiceState choice,
+            ResultState result)
         {
-            case ResultState.ResultChoice.Rematch:
-                SetChoiceState();
-                break;
-
-            case ResultState.ResultChoice.MainMenu:
-                SetSetupState();
-                break;
-
-            default:
-                Assert.That(false);
-                break;
+            this.setup = setup;
+            this.choice = choice;
+            this.result = result;
         }
-    }
 
-    private void OnCountdownEnded()
-    {
-        SetResultState();
-    }
+        private void OnChoiceTaken(ResultState.ResultChoice resultChoice)
+        {
+            switch (resultChoice)
+            {
+                case ResultState.ResultChoice.Rematch:
+                    SetChoiceState();
+                    break;
 
-    private void OnDestroy()
-    {
-        setup.StartClicked -= OnStartClicked;
-        choice.CountdownEnded -= OnCountdownEnded;
-        result.ChoiceTaken -= OnChoiceTaken;
-    }
+                case ResultState.ResultChoice.MainMenu:
+                    SetSetupState();
+                    break;
 
-    private void OnStartClicked()
-    {
-        SetChoiceState();
-    }
+                default:
+                    Assert.That(false);
+                    break;
+            }
+        }
 
-    private void SetChoiceState()
-    {
-        setup.gameObject.SetActive(false);
-        choice.gameObject.SetActive(true);
-        result.gameObject.SetActive(false);
-    }
+        private void OnCountdownEnded()
+        {
+            SetResultState();
+        }
 
-    private void SetResultState()
-    {
-        setup.gameObject.SetActive(false);
-        choice.gameObject.SetActive(false);
-        result.gameObject.SetActive(true);
-    }
+        private void OnDestroy()
+        {
+            setup.StartClicked -= OnStartClicked;
+            choice.CountdownEnded -= OnCountdownEnded;
+            result.ChoiceTaken -= OnChoiceTaken;
+        }
 
-    private void SetSetupState()
-    {
-        setup.gameObject.SetActive(true);
-        choice.gameObject.SetActive(false);
-        result.gameObject.SetActive(false);
-    }
+        private void OnStartClicked()
+        {
+            SetChoiceState();
+        }
 
-    private void Start()
-    {
-        SetSetupState();
+        private void SetChoiceState()
+        {
+            setup.gameObject.SetActive(false);
+            choice.gameObject.SetActive(true);
+            result.gameObject.SetActive(false);
+        }
 
-        setup.StartClicked += OnStartClicked;
-        choice.CountdownEnded += OnCountdownEnded;
-        result.ChoiceTaken += OnChoiceTaken;
+        private void SetResultState()
+        {
+            setup.gameObject.SetActive(false);
+            choice.gameObject.SetActive(false);
+            result.gameObject.SetActive(true);
+        }
+
+        private void SetSetupState()
+        {
+            setup.gameObject.SetActive(true);
+            choice.gameObject.SetActive(false);
+            result.gameObject.SetActive(false);
+        }
+
+        private void Start()
+        {
+            SetSetupState();
+
+            setup.StartClicked += OnStartClicked;
+            choice.CountdownEnded += OnCountdownEnded;
+            result.ChoiceTaken += OnChoiceTaken;
+        }
     }
 }

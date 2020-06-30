@@ -38,7 +38,7 @@ namespace RPS
             foreach (var id in supported.IDs)
             {
                 var culture = new CultureInfo(id);
-                
+
                 string fixedNativeName = culture.GetFixedNativeName();
 
                 var option = new TMP_Dropdown.OptionData(fixedNativeName);
@@ -47,6 +47,7 @@ namespace RPS
 
             return options;
         }
+
         private void Reset()
         {
             dropdown = GetComponent<TMP_Dropdown>();

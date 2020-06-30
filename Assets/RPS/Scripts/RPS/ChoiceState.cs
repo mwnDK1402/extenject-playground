@@ -1,55 +1,56 @@
-﻿using RPS;
-using System;
+﻿using System;
 using System.Collections;
-using System.Diagnostics;
 using UnityEngine;
 using Zenject;
 
-internal sealed class ChoiceState : MonoBehaviour
+namespace RPS
 {
-    private WaitForSeconds countdownDelay;
-
-    [SerializeField]
-    private float countdownDelayTime = 1f;
-
-    private CountdownText countdownText;
-
-    public event Action CountdownEnded;
-
-    public float CountdownTime { get; set; }
-
-    [Inject]
-    private void Construct(CountdownText countdownText)
+    internal sealed class ChoiceState : MonoBehaviour
     {
-        this.countdownText = countdownText;
-    }
+        private WaitForSeconds countdownDelay;
 
-    private IEnumerator CountdownCoroutine()
-    {
-        var countdownInterval = new WaitForSeconds(CountdownTime / 3);
+        [SerializeField]
+        private float countdownDelayTime = 1f;
 
-        yield return countdownDelay;
+        private CountdownText countdownText;
 
-        for (int i = 3; i >= 1; i--)
+        public event Action CountdownEnded;
+
+        public float CountdownTime { get; set; }
+
+        [Inject]
+        private void Construct(CountdownText countdownText)
         {
-            countdownText.ShowCountdown(i);
-            yield return countdownInterval;
+            this.countdownText = countdownText;
         }
 
-        countdownText.ShowCountdown(0);
+        private IEnumerator CountdownCoroutine()
+        {
+            var countdownInterval = new WaitForSeconds(CountdownTime / 3);
 
-        yield return countdownDelay;
+            yield return countdownDelay;
 
-        CountdownEnded?.Invoke();
-    }
+            for (int i = 3; i >= 1; i--)
+            {
+                countdownText.ShowCountdown(i);
+                yield return countdownInterval;
+            }
 
-    private void OnEnable()
-    {
-        StartCoroutine(CountdownCoroutine());
-    }
+            countdownText.ShowCountdown(0);
 
-    private void Start()
-    {
-        countdownDelay = new WaitForSeconds(countdownDelayTime);
+            yield return countdownDelay;
+
+            CountdownEnded?.Invoke();
+        }
+
+        private void OnEnable()
+        {
+            StartCoroutine(CountdownCoroutine());
+        }
+
+        private void Start()
+        {
+            countdownDelay = new WaitForSeconds(countdownDelayTime);
+        }
     }
 }

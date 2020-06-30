@@ -2,50 +2,53 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-internal sealed class ResultState : MonoBehaviour
+namespace RPS
 {
-    [SerializeField]
-    private Button
-        rematchButton,
-        mainMenuButton;
-
-    public event Action<ResultChoice> ChoiceTaken;
-
-    public enum ResultChoice
+    internal sealed class ResultState : MonoBehaviour
     {
-        Rematch,
-        MainMenu
-    }
+        [SerializeField]
+        private Button
+            rematchButton,
+            mainMenuButton;
 
-    private void OnDestroy()
-    {
-        rematchButton.onClick.RemoveListener(OnRematchButtonClicked);
-        mainMenuButton.onClick.RemoveListener(OnMainMenuButtonClicked);
-    }
+        public event Action<ResultChoice> ChoiceTaken;
 
-    private void OnMainMenuButtonClicked()
-    {
-        ChoiceTaken?.Invoke(ResultChoice.MainMenu);
-    }
-
-    private void OnRematchButtonClicked()
-    {
-        ChoiceTaken?.Invoke(ResultChoice.Rematch);
-    }
-
-    private void Reset()
-    {
-        var buttons = GetComponentsInChildren<Button>();
-        if (buttons.Length == 2)
+        public enum ResultChoice
         {
-            rematchButton = buttons[0];
-            mainMenuButton = buttons[1];
+            Rematch,
+            MainMenu
         }
-    }
 
-    private void Start()
-    {
-        rematchButton.onClick.AddListener(OnRematchButtonClicked);
-        mainMenuButton.onClick.AddListener(OnMainMenuButtonClicked);
+        private void OnDestroy()
+        {
+            rematchButton.onClick.RemoveListener(OnRematchButtonClicked);
+            mainMenuButton.onClick.RemoveListener(OnMainMenuButtonClicked);
+        }
+
+        private void OnMainMenuButtonClicked()
+        {
+            ChoiceTaken?.Invoke(ResultChoice.MainMenu);
+        }
+
+        private void OnRematchButtonClicked()
+        {
+            ChoiceTaken?.Invoke(ResultChoice.Rematch);
+        }
+
+        private void Reset()
+        {
+            var buttons = GetComponentsInChildren<Button>();
+            if (buttons.Length == 2)
+            {
+                rematchButton = buttons[0];
+                mainMenuButton = buttons[1];
+            }
+        }
+
+        private void Start()
+        {
+            rematchButton.onClick.AddListener(OnRematchButtonClicked);
+            mainMenuButton.onClick.AddListener(OnMainMenuButtonClicked);
+        }
     }
 }

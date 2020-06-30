@@ -25,13 +25,13 @@ msgid "READY?"
 msgstr "準備好了嗎？"
 
 msgid "countdown3"
-msgstr "布"
-
-msgid "countdown2"
 msgstr "剪刀"
 
-msgid "countdown1"
+msgid "countdown2"
 msgstr "石頭"
+
+msgid "countdown1"
+msgstr "布"
 
 msgid "GO!"
 msgstr "GO!"

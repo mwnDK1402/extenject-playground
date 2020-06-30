@@ -12,7 +12,6 @@ namespace RPS
         private const string LanguageKey = "Language";
         private readonly I18n i18n;
 
-        [Inject]
         public LanguagePersistence(I18n i18n)
         {
             this.i18n = i18n;

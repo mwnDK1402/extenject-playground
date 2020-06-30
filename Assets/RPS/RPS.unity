@@ -1877,7 +1877,7 @@ MonoBehaviour:
     m_Options:
     - m_Text: English (United States)
       m_Image: {fileID: 0}
-    - m_Text: "\u4E2D\u6587 (\u53F0\u6E7E)"
+    - m_Text: "\u4E2D\u6587 (\u53F0\u7063)"
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:

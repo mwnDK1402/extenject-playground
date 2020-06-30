@@ -47,3 +47,9 @@ msgstr "Countdown Time: {0}s"
 
 msgid "Start!"
 msgstr "Start!"
+
+msgid "Rematch"
+msgstr "Rematch"
+
+msgid "Main Menu"
+msgstr "Main Menu"
